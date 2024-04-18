@@ -18,22 +18,22 @@ namespace Calc
     }
     public enum UnarLexemType
     {
-        log,
-        ln,
-        tan,
-        ctg,
-        sin,
-        cos,
-        atan,
-        actg,
-        asin,
-        acos,
-        exp,
-        abs,
-        sign,
-        sqrt,
-        cbrt,
-        inv,
+        exp, //экспонента
+        log, //логарифм по основанию 10
+        ln,  //логарифм по натуральному основанию
+        tan, //тангенс
+        ctg, //котангенс
+        sin, //синус
+        cos, //косинус
+        atan,//арктангенс
+        actg,//арккотангес
+        asin,//арксинус
+        acos,//арккосинус
+        abs, //модуль
+        sign,//знак числа
+        sqrt,//квадратный корень
+        cbrt,//кубический корень
+        inv, //унарный минус
     }
     public struct Lexem
     {
@@ -113,6 +113,7 @@ namespace Calc
         //Символы перед которыми может быть вставлено умножение
         static readonly HashSet<LexemType> HiddenMulEnd =
             new HashSet<LexemType>() { LexemType.Num, LexemType.OpenBracket, LexemType.Unar };
+        //Находит длину максимальной подстроки являющейся лексемой в словаре
         static public int GetLexemLength<T>(string input, int pos, Dictionary<string, T> LexemDictionary)
         {
             for (int i = 1; i < 7; i++)
@@ -125,6 +126,7 @@ namespace Calc
             }
             return 0;
         }
+        //Находит длину максимальной подстроки являющейся числом в заданной строки начиная с позиции
         static public int FindNumLexemLength(string input, int it)
         {
             //Начало поиска чисел
@@ -169,6 +171,7 @@ namespace Calc
             }
             return it-BeginOfNum;
         }
+        //Разбор строки на поток лексем
         static public List<Lexem> Analyze(string input)
         {
             input = input.ToLower();
@@ -201,7 +204,8 @@ namespace Calc
 
             return Result;
         }
-       static private Lexem AnalyzeLexem(string input, ref int it, LexemType PrevLexem)
+        //Анализ очередной лексемы
+        static private Lexem AnalyzeLexem(string input, ref int it, LexemType PrevLexem)
         {
             //Особая обработка **
             if (input[it] == '*' && input[it + 1] == '*')

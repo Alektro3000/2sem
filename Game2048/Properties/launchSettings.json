@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Game2048": {
+      "commandName": "Project",
+      "commandLineArgs": ""
+    }
+  }
+}

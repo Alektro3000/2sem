@@ -24,10 +24,7 @@ namespace Calc
             return true;
         }
         public static implicit operator T(ListNode<T> Node) => Node.Item;
-        void IEnumerator.Reset()
-        {
-            Index = -2;
-        }
+        void IEnumerator.Reset() => Index = -2;
 
         public bool IsLast() => Index == -2 ? ParentList.Begin == -1 : (ParentList.IsLastId(Index));
         public bool IsPostLast() => Index == -1;
@@ -62,10 +59,8 @@ namespace Calc
                 ParentList.Elements[Index] = value;
             }
         }
-        public void SetItem(T newItem)
-        {
-            ParentList.Elements[Index] = newItem;
-        }
+        public void SetItem(T newItem) => ParentList.Elements[Index] = newItem;
+        
 
         //Добавляет элемент сразу после итератора
         public ListNode<T> AddAfter(T Element)
@@ -116,7 +111,7 @@ namespace Calc
             return i;
         }
     }
-    internal class List<T> : IEnumerable<ListNode<T>>
+    public class List<T> : IEnumerable<ListNode<T>>
     {
         internal int[] Links;
         internal T[] Elements;
@@ -246,5 +241,6 @@ namespace Calc
                 res += it.Item.ToString();
             return res;
         }
+        
     }
 }

@@ -7,6 +7,16 @@ using System.Threading.Tasks;
 
 namespace Calc
 {
+    public struct LexemLevel
+    {
+        public Lexem Lexem;
+        public int Level;
+        public LexemLevel(Lexem lexem, int level)
+        {
+            Lexem = lexem;
+            Level = level;
+        }
+    }
     internal class SimpleParser
     {
         static public double Evaluate(List<Lexem> Lexems)

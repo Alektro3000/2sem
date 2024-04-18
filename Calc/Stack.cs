@@ -20,6 +20,8 @@
         }
         public T Pop()
         {
+            if (IsEmpty())
+                throw new Exception("Вы что себе позволяете?");
             size -= 1;
             return AllocatedMemory[size];
         }
@@ -31,7 +33,9 @@
         public void Push(T NewElement)
         {
             if (size == AllocatedMemory.Length)
-                Array.Resize(ref AllocatedMemory,10+size*2);
+                Array.Resize(ref AllocatedMemory, 10 + size * 2);
+
+
             AllocatedMemory[size] = NewElement;
             size += 1;
         }

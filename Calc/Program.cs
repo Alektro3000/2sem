@@ -4,6 +4,7 @@ namespace Calc
 {
     internal class Program
     {
+        //Вычисление значения унарной функции
         static public double Eval(double a, UnarLexemType Operator)
         {
             double value;
@@ -64,6 +65,7 @@ namespace Calc
         }
         //Версия Eval в которой операнды имеют обратный порядок
         static public double EvalInv(double b, double a, LexemType Operator) => Eval(a, b, Operator);
+        //Вычисление бинарной операции
         static public double Eval(double a, double b, LexemType Operator)
         {
             double value;
@@ -91,8 +93,23 @@ namespace Calc
             return value;
         }
 
+        //Тестирование
         static void Main(string[] args)
         {
+            System.Collections.Generic.List<int> a = new System.Collections.Generic.List<int>();
+            Dictionary<string, int> b = new Dictionary<string, int>();
+            b.Remove(2);
+            int k = 1;
+            for (k = 1; k <= 10; k++)
+                a.Add(k);
+            k = 1;
+            while(k <= a.Count)
+            {
+                if (a[k] % k <= 2) a.RemoveAt(k);
+                k++;
+            }
+            Console.WriteLine(a.Count);
+            /*
             string[] ParserTestData = {"2","2+2","2*3","2-3", "3/2", "2 + 3 * 2", "-5/2",  "0.1 + 0,1*2",
             "pi", "-inf", "inf", "e", "tau*0.5", "nan + 2",
             "-1e3+1e-2",
@@ -135,10 +152,8 @@ namespace Calc
                 Console.WriteLine(Equation + " = " + Parser.Evaluate(Lexer.Analyze(Equation)));
 
             foreach (var Equation in SimpleParserTestData)
-            {
-                var a = Lexer.Analyze(Equation);
-                Console.WriteLine(Equation + " = " + SimpleParser.Evaluate(a));
-            }
+                Console.WriteLine(Lexer.Analyze(Equation) + " = " + SimpleParser.Evaluate(a));
+            */
         }
     }
 }
