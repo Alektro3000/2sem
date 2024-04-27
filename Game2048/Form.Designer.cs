@@ -131,7 +131,6 @@
             Controls.Add(FinishButton);
             DoubleBuffered = true;
             Margin = new Padding(2);
-            MaximizeBox = false;
             Name = "Form";
             RightToLeft = RightToLeft.No;
             Text = "2048";
